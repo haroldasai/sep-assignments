@@ -7,11 +7,17 @@ class MyStack
   end
 
   def push(item)
+    @stack.unshift(item)
+    self.top = item
   end
 
   def pop
+    popped = @stack.shift
+    self.top = empty? ? nil : @stack[0]
+    popped
   end
 
   def empty?
+    @stack.length === 0
   end
 end
