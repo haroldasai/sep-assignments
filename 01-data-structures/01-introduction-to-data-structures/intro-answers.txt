@@ -1,0 +1,34 @@
+1. How does your data structure allow developers to access and manipulate the data?
+
+It allows developers to accesss and manipulate the data..
+
+-line
+by storing people's names in an array and making them accessble by index.
+
+-screen
+by storing pixel objects in two dimentional array or matrix and making them accessible by index.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+2. If a developer wanted to find a specific element in your data structure, how would you search for it?
+
+-line
+If index is given, search it by index. If name is given, but not index, iterate through the array until you find the match.
+
+-screen
+Search it by xy coordinate.
+example: matrix[y-1][x-1]
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+3. What other real-world data can each structure represent?
+
+-array
+Guest list
+
+-matrix
+Chess board
+
+
+
+
