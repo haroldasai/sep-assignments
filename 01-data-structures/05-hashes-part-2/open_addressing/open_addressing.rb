@@ -10,22 +10,23 @@ class OpenAddressing
     if @items[i] == nil
       @items[i] = Node.new(key, value)
     else
-      i = next_open_index(i+1)
+      i = next_open_index(i)
       if i >= 0
         @items[i] = Node.new(key, value)
       else
         resize
         self[key] = value
       end
-    end  
+    end
+    print  
   end
 
   def [](key)
     i = index(key, size)
-    until key == @items[i].key
+    until key === @items[i%size].key
       i += 1
     end
-    @items[i].value  
+    @items[i%size].value  
   end
 
   # Returns a unique, deterministically reproducible index into an array
@@ -43,9 +44,11 @@ class OpenAddressing
 
   # Given an index, find the next open index in @items
   def next_open_index(index)
-    while index < @items.length
-      if @items[index] == nil
-        return index
+    start_index = index
+    index += 1
+    until index%size == start_index
+      if @items[index%size] == nil
+        return index%size
       end
       index += 1
     end
@@ -59,13 +62,24 @@ class OpenAddressing
 
   # Resize the hash
   def resize
-    items_doubled = Array.new(size*2)
-    @items.each do |item|
+    old_hash = @items
+    @items = Array.new(size*2)
+    old_hash.each do |item|
       if item != nil
-        i = index(item.key, size*2)
-        items_doubled[i] = item
+        self[item.key] = item.value  
       end
     end
-    @items = items_doubled
+  end
+
+  def print
+    puts "(START)"
+    @items.each_with_index do |item, ind|
+      if item != nil
+        puts "#{ind} #{item.key} -- #{item.value}"
+      else
+        puts "#{ind} empty"
+      end
+    end
+    puts "(END)"
   end
 end
