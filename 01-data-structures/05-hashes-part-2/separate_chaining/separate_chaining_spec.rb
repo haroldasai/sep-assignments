@@ -17,14 +17,14 @@ RSpec.describe SeparateChaining, type: Class do
   describe "#index" do
     it "creates a hash key based on the string value passed in" do
       i = star_wars_movies.index("Star Wars: A New Hope", 6)
-      expect(i).to eq 4
+      expect(i).to eq 5
     end
   end
 
   describe "#key" do
     it "returns the sum of the ascii values of the string value" do
       key = "test"
-      expect(star_wars_movies.index(key, 6)).to eq 4
+      expect(star_wars_movies.index(key, 6)).to eq 5
     end
   end
 
@@ -38,12 +38,12 @@ RSpec.describe SeparateChaining, type: Class do
     end
 
     it "sets the value of key to value" do
-      star_wars_movies["Star Wars: The Phantom Menace"] = "Number One"
-      star_wars_movies["Star Wars: Attack of the Clones"] = "Number Two"
-      star_wars_movies["Star Wars: Revenge of the Sith"] = "Number Three"
-      star_wars_movies["Star Wars: A New Hope"] = "Number Four"
-      star_wars_movies["Star Wars: The Empire Strikes Back"] = "Number Five"
-      star_wars_movies["Star Wars: Return of the Jedi"] = "Number Six"
+      #star_wars_movies["Star Wars: The Phantom Menace"] = "Number One"
+      #star_wars_movies["Star Wars: Attack of the Clones"] = "Number Two"
+      #star_wars_movies["Star Wars: Revenge of the Sith"] = "Number Three"
+      #star_wars_movies["Star Wars: A New Hope"] = "Number Four"
+      #star_wars_movies["Star Wars: The Empire Strikes Back"] = "Number Five"
+      #star_wars_movies["Star Wars: Return of the Jedi"] = "Number Six"
 
       expect(star_wars_movies["Star Wars: The Phantom Menace"]).to eq "Number One"
       expect(star_wars_movies["Star Wars: Attack of the Clones"]).to eq "Number Two"

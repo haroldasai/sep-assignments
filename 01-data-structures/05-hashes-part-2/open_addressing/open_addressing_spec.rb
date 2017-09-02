@@ -18,14 +18,14 @@ RSpec.describe OpenAddressing, type: Class do
   describe "#index" do
     it "creates a hash key based on the string value passed in" do
       i = star_wars_movies.index("Star Wars: A New Hope", 6)
-      expect(i).to eq 4
+      expect(i).to eq 5
     end
   end
 
   describe "#key" do
     it "returns the sum of the ascii values of the string value" do
       key = "test"
-      expect(star_wars_movies.index(key, 6)).to eq 4
+      expect(star_wars_movies.index(key, 6)).to eq 5
     end
   end
 
