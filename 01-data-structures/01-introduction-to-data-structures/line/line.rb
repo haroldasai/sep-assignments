@@ -32,7 +32,7 @@ class Line
 
   def search(person)
     self.members.each do |i|
-      if i === person
+      if i == person
         return person
       end
     end

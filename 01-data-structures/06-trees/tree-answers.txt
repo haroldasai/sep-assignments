@@ -1,0 +1,28 @@
+1. Print both Trees to the console and compare the difference between your Binary Search Tree and your Heap.
+
+In Heap tree, smallest node always becomes the root. In Binary search tree on the other hand, first node to be inserted becomes the root.
+
+In Binary search tree, nodes on the left hand side are always smaller than any given node and nodes on the right hand side are always bigger than that given node. In Heap tree, parents are always smaller than the children. 
+
+In binary search tree, depth of tree and number of nodes in each level change depending on the order of node insertion. On the other hand, binary heap tree always has same depth and same number of nodes in each level because the tree is filled from left node to right node regardless of the insertion order.
+
+2.
+-How much time does an average insertion consume in the Binary Search Tree compared to the Heap? 
+
+Binary search tree takes slightly longer(15%) than Heap tree
+
+-How much time does finding 50000 in the Binary Search Tree consume compared to the Heap?
+
+It takes way shorter time to find the node in Binary search tree than in Heap tree. (1:2000)
+
+-How much time does the average deletion consume in a Binary Search Tree compared to the Heap?
+
+It takes way shorter time to delete the node in Binary search tree than in Heap tree. (1:1000)
+
+-When would you use a Binary Search Tree and why?
+
+Binary search tree performs well when you need to find random element from the tree because the searching nodes shrinks in an exponential manner.
+
+-When would you use an Heap and why?
+
+Heap is useful when you want to find smallest or largest node in the tree as smallest/largest node always becomes the root in Heap. And finding root is a constant operation. 

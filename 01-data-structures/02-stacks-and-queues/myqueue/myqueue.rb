@@ -21,6 +21,6 @@ class MyQueue
   end
 
   def empty?
-    @queue.length === 0
+    @queue.length == 0
   end
 end

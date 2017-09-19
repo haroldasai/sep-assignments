@@ -1,4 +1,5 @@
 include RSpec
+require 'benchmark'
 
 require_relative 'binary_search_tree'
 
@@ -174,3 +175,57 @@ RSpec.describe BinarySearchTree, type: Class do
      }
   end
 end
+
+n = 31
+array = []
+n.times do |num|
+  array << num + 1
+end
+
+ind = rand(array.length)
+root = Node.new(array[ind], array[ind])
+tree = BinarySearchTree.new(root)
+array.delete_at(ind)
+
+until array.length == 0 do
+  ind = rand(array.length)
+  node = Node.new(array[ind], array[ind])
+  tree.insert(root, node)
+  array.delete_at(ind)
+end
+
+tree.printtree 
+
+n = 100000
+array = []
+n.times do |num|
+  array << num + 1
+end
+ind = rand(array.length)
+root = Node.new(array[ind], array[ind])
+tree = BinarySearchTree.new(root)
+array.delete_at(ind)
+
+Benchmark.bm(30) do |x|
+  x.report("binary search tree create:") do
+    until array.length == 0 do
+      ind = rand(array.length)
+      node = Node.new(array[ind], array[ind])
+      tree.insert(root, node)
+      array.delete_at(ind)
+    end
+  end
+
+  x.report("find - binary search:") do
+    tree.find_binary(root, 50000)
+  end
+
+  x.report("find - depth first search:") do
+    tree.find(root, 50000)
+  end
+
+  x.report("delete node:") do
+    tree.delete_fast(root, 50000)
+  end
+
+end 

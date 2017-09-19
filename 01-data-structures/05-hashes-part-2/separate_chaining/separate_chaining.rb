@@ -31,7 +31,7 @@ class SeparateChaining
   def [](key)
     i = index(key, size)
     cur_node = @array[i]
-    until cur_node.key === key
+    until cur_node.key == key
       cur_node = cur_node.next
     end
     cur_node.value

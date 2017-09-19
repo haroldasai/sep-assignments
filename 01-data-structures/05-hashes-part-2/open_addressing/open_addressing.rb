@@ -23,7 +23,7 @@ class OpenAddressing
 
   def [](key)
     i = index(key, size)
-    until key === @items[i%size].key
+    until key == @items[i%size].key
       i += 1
     end
     @items[i%size].value  

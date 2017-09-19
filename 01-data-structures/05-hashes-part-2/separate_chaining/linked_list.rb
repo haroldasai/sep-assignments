@@ -6,15 +6,10 @@ class LinkedList
 
   # This method creates a new `Node` using `data`, and inserts it at the end of the list.
   def add_to_tail(node)
-    if @head === nil
+    if @head == nil
       @head = node
       @tail = node
     else
-      #cur_node = @head
-      #until cur_node.next === nil
-      #  cur_node = cur_node.next
-      #end
-      #cur_node.next = node
       @tail.next = node
       @tail = node
     end
@@ -23,12 +18,12 @@ class LinkedList
   # This method removes the last node in the lists and must keep the rest of the list intact.
   def remove_tail
     if @head != nil
-      if @head.next === nil
+      if @head.next == nil
         @head = nil
         @tail = nil
       else
         cur_node = @head
-        until cur_node.next.next === nil
+        until cur_node.next.next == nil
           cur_node = cur_node.next
         end
         cur_node.next = nil
@@ -42,7 +37,7 @@ class LinkedList
     if @head != nil
       cur_node = @head
       str = ""
-      until cur_node === nil
+      until cur_node == nil
         str = str + "#{cur_node.data}\n"
         cur_node = cur_node.next
       end
@@ -52,13 +47,13 @@ class LinkedList
 
   # This method removes `node` from the list and must keep the rest of the list intact.
   def delete(node)
-    if @head === node
+    if @head == node
       remove_front
-    elsif @tail === node
+    elsif @tail == node
       remove_tail
     else
       cur_node = @head
-      until cur_node.next === node
+      until cur_node.next == node
         cur_node = cur_node.next
       end
       cur_node.next = cur_node.next.next  
@@ -74,7 +69,7 @@ class LinkedList
   # This method removes and returns the first node in the Linked List and must set Linked List's head to the second node.
   def remove_front
     if @head != nil
-      if @head.next  === nil
+      if @head.next == nil
         @head = nil
         @tail = nil
       else

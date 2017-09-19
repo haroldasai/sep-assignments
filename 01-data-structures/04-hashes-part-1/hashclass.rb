@@ -10,7 +10,7 @@ class HashClass
       @items[i] = HashItem.new(key, value)
       print
     else
-      if @items[i].key === key
+      if @items[i].key == key
         if @items[i].value != value
           resize
           @items[index(key, size)].value = value
