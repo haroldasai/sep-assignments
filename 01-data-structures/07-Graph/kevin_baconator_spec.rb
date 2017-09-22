@@ -52,7 +52,7 @@ RSpec.describe KevinBaconator, type: Class do
 
   describe "graph methods" do
     it "finds proper path to Kevin Bacon" do
-      expect(graph.find_kevin_bacon(actor_a).length).to eq 9
+      expect(graph.find_kevin_bacon(actor_a).length).to eq 5
     end
   end	
 end
