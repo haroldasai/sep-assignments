@@ -1,0 +1,42 @@
+1.
+----How to play golf----
+
+FOR each hole of a course
+  REPEAT
+    IF the ball is more than 250 yards away from the pin
+      hit the ball with a wood club
+    ELSIF the ball is less than 250 yeards away from the pin and not on green
+      hit the ball with an iron club
+    ELSEIF the ball is on green
+      hit the ball with putter
+    ENDIF  
+  UNTIL the ball is in the cup
+ENDFOR    
+
+----How to retire early----
+
+SET target_income to 4000
+SET monthly_passive_income to zero
+ 
+REPEAT
+  get a high paid job
+  save as much as you can
+  IF you saved enough to pay down
+    buy real estate
+    find tenant
+    ADD (monthly rent income - morgage payment) TO monthly_passive_income
+  ENDIF
+UNTIL monthly_passive_income exceeds target_income
+
+----How to walk----
+
+lift up your right foot
+REPEAT
+  Move your weight forward using left foot
+  land on your right foot
+  Move your weight forward using right foot 
+  land on your left foot
+UNTIL you decide to stop
+
+
+
