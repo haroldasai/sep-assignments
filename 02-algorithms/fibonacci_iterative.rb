@@ -1,11 +1,19 @@
 def fib(n)
+  fib_0 = 0
+  fib_1 = 1
+  
   if n == 0
-  	return 0
+  	fib_n = 0
   elsif n == 1
-  	return 1
-  else
-    return fib(n-1) + fib(n-2)
+    fib_n = 1
   end  	
+
+  2.upto(n) do
+  	fib_n = fib_0 + fib_1
+  	fib_0 = fib_1
+  	fib_1 = fib_n
+  end
+  fib_n		
 end
 
 puts fib(0)
