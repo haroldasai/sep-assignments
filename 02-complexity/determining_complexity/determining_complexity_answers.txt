@@ -5,7 +5,7 @@
   O(n). This algorithm checks all elements in the collection to find largest value.
 
 3. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
-  O(n^2). The number of iteration needed to find largest value in matrix is row x column.
+  O(row*column). The number of iteration needed to find largest value in matrix is row x column.
 
 4. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
   O(2^n). There are 2 branches per call, and we go as deep as n, therefore the runtime is O(2^n).
@@ -14,4 +14,4 @@
   O(n). We need n-1 iteration to find nth Fibonacci number.
 
 6. What's the Big-O of the following algorithm? Submit your work and reasoning with your solution.
-  O(nlogn). There are 2 branches per call, we go as deep as logn, and each level takes n iteration in total, therefore the runtime is O(nlogn)
+  O(nlogn). There are 2 branches per call, on average, we go as deep as logn, and each level takes n iteration in total, therefore the runtime is O(nlogn)
