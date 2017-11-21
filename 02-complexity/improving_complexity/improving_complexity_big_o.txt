@@ -1,0 +1,11 @@
+Version 1:
+Time complexity: O(n^2) on average
+Space complexity: O(n)
+
+Version 2:
+Time complexity: O(nlogn) on average
+Space complexity: array space -- O(n), call stack -- O(2^logn)
+
+Version 3:
+Time complexity: O(nlogn) on average
+Space complexity: array space -- O(n), call stack -- O(1)
