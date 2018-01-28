@@ -1,0 +1,71 @@
+1. Given the values table below, what data types do each of these values represent?
+  A Clockwork Orange -> string
+  42 -> integer
+  09/02/1945 -> string
+  98.7 -> float
+  15.99 -> float
+
+2. Explain in your own words when a database might be used. Explain when a text file might be used.
+  Database might be used in large system where multiple application instances need to access same database.
+  Text file might be used in small application where only one application instance needs to access the file.
+
+3. Describe one difference between SQL and other programming languages.
+  SQL is declarative language which focuses on getting answer rather than how to find it.
+
+4. In your own words, explain how the pieces of a database system fit together at a high level.
+  A database is formed by one or more tables with rows and columns.
+
+5. Explain the meaning of table, row, column, and value.
+  table is a set of data with columns labeled according to what is stored there, and rows that represent individual records.
+  value means data stored in each cell in a table
+6. List 3 data types that can be used in a table.
+  string, integer and float
+
+7. Given the payments table below, provide an English description and the results for the following queries:
+
+  =====================
+  SELECT date, amount
+  FROM payments;
+  description: Select column "date" and "amount" from table called "payments"
+  results:
+  5/1/2016    1500.00
+  5/10/2016   37.00
+  5/15/2016   124.93
+  5/23/2016   54.72
+  =====================
+  SELECT amount
+  FROM payments
+  WHERE amount > 500;
+  description: Select amount that is more than 500 from table called "payments"
+  results:
+  1500.00
+  =====================
+  SELECT *
+  FROM payments
+  WHERE payee = "Mega Foods";
+  description: Select all the columns whose payee is "Mega Foods" from payments table
+  results:
+  5/15/2016 Mega Foods 124.93 Groceries
+  ======================
+
+8. Given the users table below, write the following SQL queries and their results:
+  -Select the email and sign-up date for the user named DeAndre Data.
+  SELECT email, signup
+  FROM users
+  WHERE name = "DeAndre Data";
+  results:
+  datad@comcast.net 2008-01-20
+  ====================================
+  -Select the user ID for the user with email 'aleesia.algorithm@uw.edu'.
+  SELECT userid
+  FROM users
+  WHERE email = 'aleesia.algorithm@uw.edu'
+  results:
+  1
+  =======================================
+  -Select all the columns for the user ID equal to 4.
+  SELECT *
+  FROM users
+  WHERE userid = 4
+  results:
+  4 Brandy Boolean bboolean@nasa.gov 1999-10-15
