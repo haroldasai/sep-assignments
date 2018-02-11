@@ -1,0 +1,110 @@
+1. List the commands for adding, updating, and deleting data
+adding: INSERT INTO table_name (column_name,..) VALUES (value,..),(value,..),..;
+updating: UPDATE table_name SET column_name=value WHERE key=value;
+deleting: DELETE FROM table_name WHERE key=value;
+
+2. Explain the structure for each type of command.
+adding: Specify table to add data after INSERT INTO and specify column names after table name. Then, specify value for each column respectively.
+updating: Specify table to update after UPDATE, set value for specified column and specify key value.
+deleting: Specify table after DELETE FROM and then specify the key of the row to be deleted.
+
+3. What are some the data types that can be used in tables? Give a real world example of each.
+text: username
+money: price
+date: date of birth
+
+4.
+Which data type would you use to store each of the following pieces of information?
+-First and last name. - text
+-Whether they sent in their RSVP. - boolean
+-Number of guests. - integer
+-Number of meals. - integer
+
+Write a command that makes the table to track the wedding.
+CREATE TABLE wedding_guest (
+    first_name text,
+    last_name text,
+    rsvp boolean,
+    num_guests integer,
+    num_meals double precision
+);
+
+Using the table we just created, write a command that adds a column to track whether they were sent a thank you card.
+ALTER TABLE wedding_guest ADD COLUMN thkcard_sent boolean;
+
+You have decided to move the data about the meals to another table, so write a command to remove the column storing the number meals from the wedding table.
+ALTER TABLE products DROP COLUMN num_meals;
+
+The guests are going to need a place to sit at the reception, so write a statement that adds a column for table number.
+ALTER TABLE wedding_guest ADD COLUMN num_tables integer;
+
+The wedding is over and we do not need to keep this information, so write a command that deletes the wedding table from the database.
+DROP TABLE wedding_guest;
+
+5. Write a command to make a new table to hold the books in a library with the columns ISBN, title, author, genre, publishing date, number of copies, and available copies.
+CREATE TABLE library (
+    ISBN varchar(15),
+    title text,
+    author text,
+    genre text,
+    publishing_date date,
+    num_copies integer,
+    num_available integer
+);
+
+Find three books and add their information to the table.
+INSERT INTO library VALUES ('0060254920', 'Where the Wild Things Are', 'Maurice Sendak', 'Children's picture book', April 9 1963, 225496, 1000);
+INSERT INTO library VALUES ('9780395389492', 'The Polar Express', 'Chris Van Allsburg', 'Children's picture book', April 9 1985, 12162097, 1000);
+INSERT INTO library VALUES ('9780060239602', 'Frog and Toad Together', 'Arnold Lobel', 'Children's picture book', April 9 1972, 436317436, 1000);
+
+Say that someone has just checked out one of the books. Change the available copies column to 1 less.
+UPDATE library SET price=999 WHERE ISBN='0060254920';
+
+Now one of the books has been added to the banned books list. Remove it from the table.
+DELETE FROM library WHERE ISBN='0060254920';
+
+6. Write a command to make a new table to hold spacecrafts. Information should include id, name, year launched, country of origin, a brief description of the mission, orbiting body, if it is currently operating, and approximate miles from Earth.
+CREATE TABLE spacecrafts (
+    id integer,
+    name text,
+    year_launched integer,
+    country text,
+    description text,
+    orbiting_body text,
+    on_duty boolean,
+    distance integer
+);
+
+Add 3 non-Earth-orbiting satellites to the table.
+INSERT INTO spacecrafts VALUES (1, 'Luna 1', 1959, 'USSR', 'The first spacecraft to reach the vicinity of the Moon, and the first spacecraft to be placed in heliocentric orbit.', 'Moon', true, 238900);
+INSERT INTO spacecrafts VALUES (2, 'Mariner 9', 1971, 'USA', 'Orbiter, first pictures of Mars' moons (Phobos and Deimos) taken', 'Mars', true, 33900000);
+INSERT INTO spacecrafts VALUES (3, 'Pioneer 10', 1972, 'USA', 'First spacecraft to encounter Jupiter', 'Jupiter', true, 365000000);
+
+Remove one of the satellites from the table since it has just been crashed into the planet.
+DELETE FROM spacecrafts WHERE id=1;
+
+Edit another satellite because it is no longer operating and change the value to reflect that.
+UPDATE spacecrafts SET on_duty=false WHERE id=2;
+
+7.
+CREATE TABLE inbox (
+    id integer,
+    subject text,
+    sender text,
+    recipients text,
+    body text,
+    timestamp timestamp,
+    read boolean,
+    chain_id integer
+);
+
+Add 3 new emails to the inbox.
+INSERT INTO inbox VALUES (1, 'Hello', 'john@bloc.com', 'doe@bloc.com', 'World', 04:05:06.789, true, 100);
+INSERT INTO inbox VALUES (2, 'Hello', 'sally@bloc.com', 'doe@bloc.com', 'World', 04:07:06.789, true, 100);
+INSERT INTO inbox VALUES (3, 'Hello', 'jim@bloc.com', 'doe@bloc.com', 'World', 04:08:06.789, true, 100);
+
+You’ve just deleted one of the emails, so write a command to remove the row from the inbox table.
+DELETE FROM inbox WHERE id=3;
+
+You started reading an email but just heard a crash in another room. Mark the email as unread before investigating, so you can come back to it later.
+UPDATE inbox SET read=false WHERE id=3;
