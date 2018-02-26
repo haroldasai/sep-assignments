@@ -1,0 +1,104 @@
+1. Write out a generic SELECT statement.
+SELECT <column1, column2, ... *>
+FROM <table1, table2 ...>
+<optional: WHERE <condition>>
+
+2. Create a fun way to remember the order of operations in a SELECT statement, such as a mnemonic.
+SoFtWHERE
+
+3. Create a pets database. Create a dogs table using this file. From the dogs table with the columns id, name, gender, age, weight, intake_date, breed, and in_foster, write statements to select the following pieces of data.
+-Display the name, gender, and age of all dogs that are part Labrador.
+pets=# SELECT name, gender, age FROM dogs WHERE breed LIKE '%labrador%';
+  name  | gender | age
+--------+--------+-----
+ Boujee | F      |   3
+ Marley | M      |   0
+(2 rows)
+
+-Display the ids of all dogs that are under 1 year old.
+pets=# SELECT id FROM dogs WHERE age < 1;
+  id
+-------
+ 10002
+ 10004
+(2 rows)
+
+-Display the name and age of all dogs that are female and over 35lbs.
+pets=# SELECT name, age FROM dogs WHERE gender = 'F' AND weight > 35;
+  name  | age
+--------+-----
+ Boujee |   3
+(1 row)
+
+-Display all of the information about all dogs that are not Shepherd mixes.
+pets=# SELECT * FROM dogs WHERE breed NOT LIKE '%shepherd%';
+  id   |   name    | gender | age | weight |       breed        | intake_date | in_foster
+-------+-----------+--------+-----+--------+--------------------+-------------+------------
+ 10001 | Boujee    | F      |   3 |     36 | labrador poodle    | 2017-06-22  |
+ 10002 | Munchkin  | F      |   0 |      8 | dachsund chihuahua | 2017-01-13  | 2017-01-31
+ 10004 | Marley    | M      |   0 |     10 | labrador           | 2017-05-04  | 2016-06-20
+ 10006 | Marmaduke | M      |   7 |    150 | great dane         | 2016-03-22  | 2016-05-15
+ 10007 | Rosco     | M      |   5 |    180 | rottweiler         | 2017-04-01  |
+(5 rows)
+
+-Display the id, age, weight, and breed of all dogs that are either over 60lbs or Great Danes.
+pets=# SELECT id, age, weight, breed FROM dogs WHERE weight > 60 OR breed = 'great dane';
+  id   | age | weight |   breed
+-------+-----+--------+------------
+ 10006 |   7 |    150 | great dane
+ 10007 |   5 |    180 | rottweiler
+(2 rows)
+
+4. From the cats table below, what pieces of data would be returned from these queries?
+-SELECT name, adoption_date FROM cats;
+name and adoption_date column of all cats.
+-SELECT name, age FROM cats;
+name and age column of all cats.
+
+5. From the cats table, write queries to select the following pieces of data.
+-Display all the information about all of the available cats.
+SELECT * FROM cats;
+-Choose one cat of each age to show to potential adopters.
+SELECT * FROM cats WHERE adoption_date IS NULL;
+-Find all of the names of the cats, so you don’t choose duplicate names for new cats.
+SELECT name FROM cats;
+
+6. List each comparison operator and explain, in your own words, when you would use it. Include a real world example for each.
+>   age > 20    when you want to select people older than 20.
+<   age < 21    when you want to select people under 21.
+=   gender = 'M'    when you want to select male.
+<=  distance <= 30    select neighbor city less than or equal to 30 miles away.
+>=  weight >= 100    select people weight more than or equal to 100lb.
+!=, <>  species != dogs     select all animals except dogs.
+LIKE  WHERE last_name LIKE '% Smith'    select people who's last name is Smith.
+BETWEEN  WHERE age BETWEEN 10 and 19    select teenagers.
+IS DISTINCT FROM  WHERE occupation IS DISTINCT FROM 'police officer'    select non police officer(include the unemployed).
+IS TRUE/ IS FALSE  WHERE occupation IS TRUE    select the employed.
+IS NULL  WHERE occupation is NULL    select the unemployed.
+AND  WHERE gender = 'M' AND species = 'cats'    select male cats.
+OR   WHERE species = 'cats' OR species = 'dogs'    select either cats or dogs.
+NOT  WHERE name NOT LIKE '% Smith'    select people who's last name is not Smith.
+
+7. From the cats table below, what data would be returned from these queries?
+SELECT name FROM cats WHERE gender = ‘F’;
+name
+-------
+Seashell
+Nala
+(2 rows)
+
+SELECT name FROM cats WHERE age <> 3;
+name
+-------
+Mushi
+Seashell
+Victoire
+Nala
+(4 rows)
+
+SELECT ID FROM cats WHERE name != ‘Mushi’ AND gender = ‘M’;
+id
+-------
+00003
+00004
+(2 rows)
