@@ -1,0 +1,193 @@
+1. List 5 aggregate functions and explain, in your own words, what they are for. Include a real world example for each.
+SUM:
+Sum up specified column. Calculate total working hours in March.
+
+MAX:
+Find the max value in specified column. Find the tallest hight in the group.
+
+MIN:
+Find the minimum value in specified column. Find fastest record in 100m dash.
+
+AVG:
+Find the average of specified column. Find average score of a standard test.
+
+COUNT:
+Find the number of entries in specified column. Find the number of participants.
+
+2. Given this donations table, write queries and include the output for the following.
+-The total of all donations received in the past year.
+SELECT SUM(amount)
+  FROM donations;
+
+  sum
+----------
+993.0000
+(1 row)
+
+-The total donations over time per donor (e.g. if Tanysha has donated 3 times with the amounts $25, $30, and $50, then the result would be | Tanysha | 105 |).
+donations=# SELECT SUM(amount) AS total_amount, donor
+  FROM donations
+  GROUP BY donor;
+
+ total_amount |   donor
+--------------+------------
+      20.0000 | Samwell
+      10.0000 | Daario
+      75.0000 | Brienne
+     120.0000 | Tyrion
+      70.0000 | Petyr
+      45.0000 | Melisandre
+      25.0000 | Bran
+      50.0000 | Tormund
+      30.0000 | Ygritte
+       7.0000 | Gilly
+      25.0000 | Jon
+      60.0000 | Arya
+      20.0000 | Theon
+      20.0000 | Bronn
+     120.0000 | Margaery
+      90.0000 | Missandei
+      33.0000 | Sansa
+     173.0000 | Daenerys
+(18 rows)
+
+-The average donation per donor.
+donations=# SELECT AVG(amount) AS avg_amount, donor
+  FROM donations
+  GROUP BY donor;
+
+  avg_amount      |   donor
+----------------------+------------
+20.0000000000000000 | Samwell
+10.0000000000000000 | Daario
+75.0000000000000000 | Brienne
+40.0000000000000000 | Tyrion
+70.0000000000000000 | Petyr
+45.0000000000000000 | Melisandre
+25.0000000000000000 | Bran
+50.0000000000000000 | Tormund
+30.0000000000000000 | Ygritte
+7.0000000000000000 | Gilly
+25.0000000000000000 | Jon
+20.0000000000000000 | Arya
+10.0000000000000000 | Theon
+20.0000000000000000 | Bronn
+120.0000000000000000 | Margaery
+22.5000000000000000 | Missandei
+33.0000000000000000 | Sansa
+86.5000000000000000 | Daenerys
+(18 rows)
+
+-The number of donations over $100.
+SELECT COUNT(amount)
+  FROM donations
+  WHERE amount > 100;
+
+count
+-------
+    2
+(1 row)
+
+-The largest donation received in a single instance from a single donor.
+SELECT MAX(amount) AS MAX_amount, donor
+  FROM donations
+  GROUP BY donor;
+
+  max_amount |   donor
+ ------------+------------
+     20.0000 | Samwell
+     10.0000 | Daario
+     75.0000 | Brienne
+     60.0000 | Tyrion
+     70.0000 | Petyr
+     45.0000 | Melisandre
+     25.0000 | Bran
+     50.0000 | Tormund
+     30.0000 | Ygritte
+      7.0000 | Gilly
+     25.0000 | Jon
+     30.0000 | Arya
+     15.0000 | Theon
+     20.0000 | Bronn
+    120.0000 | Margaery
+     30.0000 | Missandei
+     33.0000 | Sansa
+    102.0000 | Daenerys
+ (18 rows)
+
+-The Smallest donation received.
+SELECT MIN(amount) AS MIN_amount, donor
+  FROM donations
+  GROUP BY donor;
+
+  min_amount |   donor
+ ------------+------------
+     20.0000 | Samwell
+     10.0000 | Daario
+     75.0000 | Brienne
+     10.0000 | Tyrion
+     70.0000 | Petyr
+     45.0000 | Melisandre
+     25.0000 | Bran
+     50.0000 | Tormund
+     30.0000 | Ygritte
+      7.0000 | Gilly
+     25.0000 | Jon
+     15.0000 | Arya
+      5.0000 | Theon
+     20.0000 | Bronn
+    120.0000 | Margaery
+     10.0000 | Missandei
+     33.0000 | Sansa
+     71.0000 | Daenerys
+ (18 rows)
+
+3. How would you determine the display order of data returned by your SELECT statement?
+Add DESC statement at the end of ORDER BY statement if descending order.
+
+4. What is a real world situation where you would use OFFSET?
+When you want to retrieve the 10th to 20th largest populated countries in the world.
+
+5. Why is it important to use ORDER BY when limiting your results?
+It helps you to retrieve highest or lowest results.
+
+6. What is the difference between HAVING and WHERE?
+HAVING work on summarized GROUP BY results while WHERE work on non-summarized results.
+
+7. Correct the following SELECT statement:
+SELECT id, SUM(amount) AS total_amount
+  FROM payment
+  GROUP BY id
+  HAVING SUM (amount) > 200;
+
+8. Follow the instructions for the scenarios below:
+-Given this [cats][http://sqlfiddle.com/#!17/bc4d2] table from the previous checkpoint, list all cats organized by intake date.
+SELECT name, intake_date
+  FROM cats
+  ORDER BY intake_date;
+
+-Given this adoptions table, determine the 5 most recent adoptions to be featured for a social media promotion called "Happy Tails" which lists recent successful adoptions.
+SELECT *
+  FROM adoptions
+  ORDER BY date
+  LIMIT 5;
+
+-There is a potential adopter looking for an adult female cat. In the most efficient way possible, list all female cats 2 or more years old from the cats table.
+SELECT name, gender, age
+  FROM cats
+  WHERE age >= 2 AND gender = 'F';
+
+-From the donations table (from problem #2), find the top 5 donors with the highest cumulative donation amounts to be honored as “Platinum Donors”.
+SELECT SUM(amount) AS total_amount, donor
+  FROM donations
+  GROUP BY donor
+  ORDER BY total_amount DESC
+  LIMIT 5;
+
+-From the donations table (from problem #2), find donors 6-15 with the next highest cumulative donation amounts to be honored as “Gold Donors”.
+SELECT SUM(amount) AS total_amount, donor
+  FROM donations
+  GROUP BY donor
+  ORDER BY total_amount DESC
+  LIMIT 15
+  OFFSET 5;      
